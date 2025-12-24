@@ -1,0 +1,37 @@
+{
+  "name": "tanjiro-manager",
+  "version": "1.0.0",
+  "description": "What is going on here?",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node --watch app.js",
+    "lint": "npx @biomejs/biome check *.js listeners",
+    "lint:fix": "npx @biomejs/biome check --write *.js listeners",
+    "start": "node app.js",
+    "test": "node --test tests/**/*.spec.js"
+  },
+  "author": "Slack Technologies, LLC",
+  "license": "MIT",
+  "keywords": [
+    "slack",
+    "bolt",
+    "slackapi"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/slack-samples/bolt-js-starter-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/slack-samples/bolt-js-starter-template/issues"
+  },
+  "dependencies": {
+    "@slack/bolt": "^4.6.0",
+    "dotenv": "~17.2.3",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.8",
+    "@slack/cli-hooks": "^1.2.1"
+  }
+}
