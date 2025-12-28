@@ -22,10 +22,9 @@ registerListeners(app);
     app.logger.error('Failed to start the app', error);
   }
   
-  // KOYEB HEALTH CHECK SERVER
-  // This satisfies Koyeb that the app is "Live"
+  // Render CHECK SERVER
   http.createServer((req, res) => {
     res.writeHead(200);
     res.end('All systems go');
-  }).listen(process.env.PORT || 8000);
+  }).listen(process.env.PORT || 10000);
 })();
