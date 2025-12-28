@@ -40,12 +40,12 @@
             {
                 "command": "/messytext",
                 "description": "Scrambles up your text",
-                "should_escape": false
+                "should_escape": true
             },
             {
                 "command": "/whispertext",
                 "description": "Send an Only Visible to You message to anyone",
-                "should_escape": false
+                "should_escape": true
             }
         ]
     },
