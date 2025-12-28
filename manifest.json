@@ -31,6 +31,21 @@
                 "command": "/playRPS",
                 "description": "A regular game of Rock, Paper, Scissors",
                 "should_escape": true
+            },
+            {
+                "command": "/playOmniRPS",
+                "description": "Rock, Paper, Scissors, but you can use anything",
+                "should_escape": true
+            },
+            {
+                "command": "/messytext",
+                "description": "Scrambles up your text",
+                "should_escape": false
+            },
+            {
+                "command": "/whispertext",
+                "description": "Send an Only Visible to You message to anyone",
+                "should_escape": false
             }
         ]
     },
@@ -38,6 +53,7 @@
         "scopes": {
             "bot": [
                 "chat:write",
+                "chat:write.customize",
                 "groups:read",
                 "channels:write.invites", 
                 "groups:write.invites", 
@@ -68,7 +84,8 @@
                 "usergroups:write", 
                 "users.profile:read", 
                 "users:write",
-                "search:read.public"
+                "search:read.public",
+                "profile"
             ],
             "user": [
                 "dnd:write",

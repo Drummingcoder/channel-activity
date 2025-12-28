@@ -1,9 +1,9 @@
-const play = async ({ ack, respond, shortcut, logger, client }) => {
+const play = async ({ ack, respond, command, logger, client }) => {
   try {
     await ack();
-    const userId = shortcut.user.id;
+    const userId = command.user.id;
     const view = await client.views.open({
-      trigger_id: shortcut.trigger_id,
+      trigger_id: command.trigger_id,
       view: {
         type: "modal",
         callback_id: "rps_start_modal",
