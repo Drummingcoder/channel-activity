@@ -141,7 +141,7 @@ const deathb = async ({ ack, respond, command, logger, client }) => {
         private_metadata: JSON.stringify({ user_id: userId }),
         title: {
           type: "plain_text",
-          text: "Magical Death by AI"
+          text: "Death by AI"
         },
         submit: {
           type: "plain_text",
@@ -189,14 +189,14 @@ const deathb = async ({ ack, respond, command, logger, client }) => {
                 {
                   text: {
                     type: "plain_text",
-                    text: "Any scenario can happen"
+                    text: "General"
                   },
                   value: "general"
                 },
                 {
                   text: {
                     type: "plain_text",
-                    text: "Magical scenarios only"
+                    text: "Magic"
                   },
                   value: "magic"
                 }

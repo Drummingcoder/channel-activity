@@ -1,14 +1,14 @@
 import { db, dbRun, dbGet, dbAll } from '../commands/deathbyai.js';
 
 // Cloudflare AI configuration
-const CLOUDFLARE_ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID || "de299eff7ceaa5006bd30245bd9a6c77";
-const CLOUDFLARE_API_TOKEN = process.env.CLOUDFLARE_API_TOKEN || "trcWfRL7kg_P8I0Denn_tIngbsf1ZszdZ08In75F";
+const CLOUDFLARE_API_KEY = process.env.CLOUDFLARE_API_KEY;
+const CLOUDFLARE_API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
 const AI_MODEL = "@cf/meta/llama-3.1-8b-instruct";
 
 // Helper function to call Cloudflare AI
 async function callCloudflareAI(messages, maxTokens = 100, temperature = 0.8) {
   const response = await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/run/${AI_MODEL}`,
+    `https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_API_KEY}/ai/run/${AI_MODEL}`,
     {
       method: "POST",
       headers: {

@@ -29,7 +29,7 @@ const goplay = async ({ ack, view, body, client, logger }) => {
     await dbRun(
       `INSERT INTO DeathByAI 
        (game_number, ts, channel, player1, p1score, playersEntered, numofinputs, round, finished, type) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       gameNumber,
       mess.ts,
       channel,
