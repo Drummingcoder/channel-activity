@@ -43,10 +43,6 @@ const goplay = async ({ ack, view, body, client, logger }) => {
     );
 
     logger.info(`Created Death by AI game #${gameNumber}`);
-    await client.chat.postMessage({
-      channel: channel,
-      text: `Game #${gameNumber} created! Players can now join by replying to the message.`,
-    });
   } catch (error) {
     logger.error(error);
   }
