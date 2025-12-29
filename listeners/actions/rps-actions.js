@@ -71,11 +71,25 @@ const p1InputHandler = async ({ ack, body, client, logger }) => {
       
       // Update message - both players entering
       if (body.message && body.channel) {
+        const blocks = body.message.blocks
+          .filter(block => block.type !== "context")
+          .map(block => {
+            if (block.type === "actions") {
+              return {
+                ...block,
+                elements: block.elements.filter(
+                  (el) => el.action_id !== "p1_input"
+                ),
+              };
+            }
+            return block;
+          });
+        
         await client.chat.update({
           channel: body.channel.id,
           ts: body.message.ts,
           blocks: [
-            ...body.message.blocks.slice(0, -2),
+            ...blocks,
             {
               type: "context",
               elements: [
@@ -230,11 +244,25 @@ const p2InputHandler = async ({ ack, body, client, logger }) => {
       
       // Update message - both players entering
       if (body.message && body.channel) {
+        const blocks = body.message.blocks
+          .filter(block => block.type !== "context")
+          .map(block => {
+            if (block.type === "actions") {
+              return {
+                ...block,
+                elements: block.elements.filter(
+                  (el) => el.action_id !== "p2_input"
+                ),
+              };
+            }
+            return block;
+          });
+        
         await client.chat.update({
           channel: body.channel.id,
           ts: body.message.ts,
           blocks: [
-            ...body.message.blocks.slice(0, -2),
+            ...blocks,
             {
               type: "context",
               elements: [
