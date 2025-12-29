@@ -83,6 +83,7 @@ db.serialize(() => {
       round INTEGER DEFAULT 0,
       finished INTEGER DEFAULT 0,
       type TEXT DEFAULT general,
+      lastquestion TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `, (err) => {
