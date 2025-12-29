@@ -7,7 +7,8 @@ const whisper = async ({ ack, body, client, command}) => {
 
     const arr = mytext.split("> ");
     const usertosend = arr[0].split("|")[0].split("@")[1];
-    const userText = arr.shift().join("> ");
+    arr.shift();
+    const userText = arr.join("> ");
 
     const display = await client.users.profile.get({
       user: username,

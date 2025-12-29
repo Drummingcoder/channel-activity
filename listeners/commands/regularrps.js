@@ -1,7 +1,7 @@
 const play = async ({ ack, respond, command, logger, client }) => {
   try {
     await ack();
-    const userId = command.user.id;
+    const userId = command.user_id;
     const view = await client.views.open({
       trigger_id: command.trigger_id,
       view: {
