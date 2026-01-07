@@ -1,5 +1,9 @@
 import { omnirespond } from './omnireply.js';
 
+const CLOUDFLARE_ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
+const CLOUDFLARE_API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
+const AI_MODEL = "@cf/meta/llama-3.1-8b-instruct";
+
 export const register = (app) => {
   app.event("message", omnirespond)
   app.event('member_joined_channel', async({ client, event, logger }) => {
@@ -17,11 +21,11 @@ export const register = (app) => {
       const invitedname = rep2.user.profile?.display_name || rep2.user.profile?.real_name || "no one";
       stringtoai += ` This user was forced to join by ${invitedname}, so poke some fun at that or tease the person who "invited" (forced them) to join.`
     }
-    const airesponse1 = await fetch(`https://api.cloudflare.com/client/v4/accounts/${"de299eff7ceaa5006bd30245bd9a6c77"}/ai/run/${"@cf/meta/llama-3.1-8b-instruct"}`, {
+    const airesponse1 = await fetch(`https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/run/${AI_MODEL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${"trcWfRL7kg_P8I0Denn_tIngbsf1ZszdZ08In75F"}`, 
+        "Authorization": `Bearer ${CLOUDFLARE_API_TOKEN}`, 
       },
       body: JSON.stringify({
         messages: [
