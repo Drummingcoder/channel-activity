@@ -1,5 +1,5 @@
 import { p1InputHandler, p2InputHandler } from './rps-actions.js';
-import { omniP1InputHandler, omniP2InputHandler } from '../views/omnirps.js';
+import { omniP1InputHandler, omniP2InputHandler } from './omnirps-actions.js';
 
 export const register = (app) => {
   app.action('p1_input', p1InputHandler);
