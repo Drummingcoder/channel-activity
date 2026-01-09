@@ -392,15 +392,7 @@ const p1InputHandler = async ({ ack, body, client, logger }) => {
       
       // Update message - both players entering
       if (body.message && body.channel) {
-        const blocks = body.message.blocks.filter(block => block.type !== "context").map(block => {
-            if (block.type === "actions") {
-              return {
-                ...block,
-                elements: [],
-              };
-            }
-            return block;
-          });
+        const blocks = body.message.blocks.filter(block => block.type !== "actions" && block.type !== "context");
         
         await client.chat.update({
           channel: body.channel.id,
@@ -558,15 +550,7 @@ const p2InputHandler = async ({ ack, body, client, logger }) => {
       
       // Update message - both players entering
       if (body.message && body.channel) {
-        const blocks = body.message.blocks.filter(block => block.type !== "context").map(block => {
-            if (block.type === "actions") {
-              return {
-                ...block,
-                elements: [],
-              };
-            }
-            return block;
-          });
+        const blocks = body.message.blocks.filter(block => block.type !== "actions" && block.type !== "context");
         
         await client.chat.update({
           channel: body.channel.id,
