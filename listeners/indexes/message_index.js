@@ -1,7 +1,7 @@
-import { addperson } from './deathadder.js';
-import { flipcoin } from './aflipper.js';
-import { eightball } from './ball.js';
-import { nextminute } from './zoom.js';
+import { addperson } from '../messages/deathadder.js';
+import { flipcoin } from '../messages/aflipper.js';
+import { eightball } from '../messages/ball.js';
+import { nextminute } from '../messages/zoom.js';
 
 export const register = (app) => {
   app.message(/^(me|Me|I|i).*/, addperson);
