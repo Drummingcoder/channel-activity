@@ -1,9 +1,8 @@
-import { deathb } from '../commands/deathbyai.js';
-import { derespond } from '../commands/deathresponder.js';
+import { deathb } from '../deathbyai.js';
+import { derespond } from '../deathbyai.js';
 import { playRPS } from '../rps.js';
-import { playOmni } from '../commands/omnirps.js';
-import { messy } from '../commands/messytext.js';
-import { whisper } from '../commands/whispertext.js';
+import { playOmni } from '../omnirps.js';
+import { messy, whisper } from '../textingcommands.js';
 
 export const register = (app) => {
   app.command('/deathbyai', deathb);

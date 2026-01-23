@@ -1,4 +1,4 @@
-import { omnirespond } from '../events/omnireply.js';
+import { omnirespond } from '../omnirps.js';
 import { memberjoin, memberleave } from '../member_join_and_leave.js';
 
 export const register = (app) => {

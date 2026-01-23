@@ -1,8 +1,7 @@
-import { goplay } from '../views/deathstart.js';
-import { dereply } from '../views/deathrep.js';
+import { goplay, dereply } from '../deathbyai.js';
 import { basicrps } from '../rps.js';
 import { p1MoveSubmission, p2MoveSubmission } from '../rps.js';
-import { omnirpsSubmission, omniP1MoveSubmission, omniP2MoveSubmission } from '../views/omnirps.js';
+import { omnirpsSubmission, omniP1MoveSubmission, omniP2MoveSubmission } from '../omnirps.js';
 
 export const register = (app) => {
   app.view('death_go_modal', goplay);

@@ -1,12 +1,10 @@
-import { addperson } from '../messages/deathadder.js';
-import { flipcoin } from '../messages/aflipper.js';
-import { eightball } from '../messages/ball.js';
-import { nextminute } from '../messages/zoom.js';
+import { addperson } from '../deathbyai.js';
+import { flipcoin, eightball, rolldice } from '../smallgames.js';
 
 export const register = (app) => {
   app.message(/^(me|Me|I|i).*/, addperson);
   app.message(/^start$/i, addperson);
   app.message(/flip\s+(a\s+)?(\d+\s+)?coins?/i, flipcoin);
-  app.message(/(eight|8).*ball|ball.*(eight|8)/i, eightball);
-  app.message(/^oneminutelaterpastnonececil934$/, nextminute);
+  app.message(/\broll\b\s+\d+\s+(dice|die)|\broll\b.*(dice|die)/i, rolldice);
+  app.message(/\b(eight|8)\s*ball|ball\s*(eight|8)\b/i, eightball);
 };
