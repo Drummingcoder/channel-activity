@@ -552,6 +552,8 @@ const addperson = async ({ message, client, logger }) => {
         user: user,
         text: "You can't join twice!",
         thread_ts: timestamp,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
       return;
     }
@@ -562,6 +564,8 @@ const addperson = async ({ message, client, logger }) => {
         user: user,
         text: "Sorry, the lobby is full.",
         thread_ts: timestamp,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
       return;
     }
