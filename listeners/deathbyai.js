@@ -257,7 +257,9 @@ const goplay = async ({ ack, view, client, logger }) => {
     // Post the game message
     const mess = await client.chat.postMessage({
       channel: channel,
-      text: `Game number: ${gameNumber}\n<@${userId}> wants to play a game of magical Death by AI! Anyone who wants to play with them, reply to this message.`
+      text: `Game number: ${gameNumber}\n<@${userId}> wants to play a game of magical Death by AI! Anyone who wants to play with them, reply to this message.`,
+      username: "The Dokeshi",
+      icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
     });
 
     // Insert the game into the database
@@ -400,6 +402,8 @@ const dereply = async ({ ack, view, client, logger }) => {
       const post = await client.chat.postMessage({
         channel: updatedGame.channel,
         text: `Here are the results of game #${gameNumber}!`,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
 
       // Post results for each player
@@ -413,6 +417,8 @@ const dereply = async ({ ack, view, client, logger }) => {
             channel: updatedGame.channel,
             text: `<@${updatedGame[`player${i}`]}>, with your response of "${playerRep}"...`,
             thread_ts: post.ts,
+            username: "The Dokeshi",
+            icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
           });
 
           if (playerScore === 1) {
@@ -420,12 +426,16 @@ const dereply = async ({ ack, view, client, logger }) => {
               channel: updatedGame.channel,
               text: `You have succeeded! The AI says, "${playerAns}"`,
               thread_ts: post.ts,
+              username: "The Dokeshi",
+              icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
             });
           } else {
             await client.chat.postMessage({
               channel: updatedGame.channel,
               text: `You have failed! The AI says, "${playerAns}"`,
               thread_ts: post.ts,
+              username: "The Dokeshi",
+              icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
             });
           }
         }
@@ -435,6 +445,8 @@ const dereply = async ({ ack, view, client, logger }) => {
         channel: updatedGame.channel,
         text: `Thank you for playing! See ya next time!`,
         thread_ts: post.ts,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
     }
 
@@ -478,6 +490,8 @@ const addperson = async ({ message, client, logger }) => {
         channel: channelToPost,
         text: "Alright, starting the game...",
         thread_ts: timestamp,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
       
       await dbRun('UPDATE DeathByAI SET round = ? WHERE game_number = ?', 1, game.game_number);
@@ -523,6 +537,8 @@ const addperson = async ({ message, client, logger }) => {
         channel: channelToPost,
         text: `Alright, here's your scenario. Respond with the "/deathrespond" command.\n\n${rep4}`,
         thread_ts: timestamp,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
 
       await dbRun('UPDATE DeathByAI SET lastquestion = ? WHERE game_number = ?', rep4, game.game_number);
@@ -599,6 +615,8 @@ const addperson = async ({ message, client, logger }) => {
         channel: channelToPost,
         text: "The lobby is now full! Please wait for the host to start the game.",
         thread_ts: timestamp,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
     }
 

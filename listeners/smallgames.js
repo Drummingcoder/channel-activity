@@ -18,6 +18,8 @@ const flipcoin = async ({ message, client, logger }) => {
           channel: message.channel,
           text: `The limit is 1000000 coins, rolling 1000000 coins instead.`,
           thread_ts: message.thread_ts || message.ts,
+          username: "The Dokeshi",
+          icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
         });
         num = 1000000;
       }
@@ -39,12 +41,16 @@ const flipcoin = async ({ message, client, logger }) => {
         channel: message.channel,
         text: resultMessage,
         thread_ts: message.thread_ts || message.ts,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
 
       await client.chat.postMessage({
         channel: message.channel,
         text: `That's a total of ${numHeads} heads and ${numTails} tails.`,
         thread_ts: message.thread_ts || message.ts,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
 
       return;
@@ -62,6 +68,8 @@ const flipcoin = async ({ message, client, logger }) => {
       channel: message.channel,
       text: `It's ${result}!`,
       thread_ts: message.thread_ts || message.ts,
+      username: "The Dokeshi",
+      icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
     });
   } catch (error) {
     logger.error('Error in flipcoin handler:', error);
@@ -82,6 +90,8 @@ const rolldice = async ({ message, client, logger }) => {
                 channel: message.channel,
                 text: "You rolled nothing!",
                 thread_ts: message.thread_ts || message.ts,
+                username: "The Dokeshi",
+                icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
             });
             return { outputs: {} };
         }
@@ -91,6 +101,8 @@ const rolldice = async ({ message, client, logger }) => {
                 channel: message.channel,
                 text: `The limit is 1000000 dice, rolling 1000000 dice instead.`,
                 thread_ts: message.thread_ts || message.ts,
+                username: "The Dokeshi",
+                icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
             });
             num = 1000000;
         }
@@ -99,6 +111,8 @@ const rolldice = async ({ message, client, logger }) => {
             channel: message.channel,
             text: "Rolling...",
             thread_ts: message.thread_ts || message.ts,
+            username: "The Dokeshi",
+            icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
         });
         let str = "You rolled ";
         if (num == 1) {
@@ -108,6 +122,8 @@ const rolldice = async ({ message, client, logger }) => {
                 channel: message.channel,
                 text: str,
                 thread_ts: message.thread_ts || message.ts,
+                username: "The Dokeshi",
+                icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
             });
         } else {
             let sum = 0;
@@ -126,11 +142,15 @@ const rolldice = async ({ message, client, logger }) => {
                 channel: message.channel,
                 text: str,
                 thread_ts: message.thread_ts || message.ts,
+                username: "The Dokeshi",
+                icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
             });
             await client.chat.postMessage({
                 channel: message.channel,
                 text: "The sum of all rolled numbers is " + sum + ".",
                 thread_ts: message.thread_ts || message.ts,
+                username: "The Dokeshi",
+                icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
             });
         }
     } catch (error) {
@@ -149,6 +169,8 @@ const eightball = async ({ message, client, logger }) => {
       channel: message.channel,
       text: "Shaking the ball...",
       thread_ts: message.thread_ts || message.ts,
+      username: "The Dokeshi",
+      icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
     });
     let rando = Math.random(); //values from 0 to 0.99
     let reroll = Math.random();
@@ -159,6 +181,8 @@ const eightball = async ({ message, client, logger }) => {
         channel: message.channel,
         text: "Shaking the ball...",
         thread_ts: message.thread_ts || message.ts,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
     }
     if (rando < 0.4) {
@@ -168,6 +192,8 @@ const eightball = async ({ message, client, logger }) => {
         channel: message.channel,
         text: `The 8-ball says: "${responses[index]}"`,
         thread_ts: message.thread_ts || message.ts,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
     } else if (rando < 0.7) {
       const responses = ["Don't count on it", "My reply is no", "My sources say no", "Outlook not so good", "Very doubtful", "Highly Unlikely"];

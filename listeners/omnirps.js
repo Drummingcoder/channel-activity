@@ -263,12 +263,16 @@ const omnirpsSubmission = async ({ ack, view, client, logger }) => {
       const firstText = await client.chat.postMessage({
         channel: channelToPost,
         text: `<@${userId}>, ready to play magical infinite RPS? Just reply in this thread with your move, and see how high your score can go!`,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
 
       await client.chat.postMessage({
         channel: channelToPost,
         text: `What can beat ${initialMove}?`,
         thread_ts: firstText.ts,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
 
       await dbRun(
@@ -286,6 +290,8 @@ const omnirpsSubmission = async ({ ack, view, client, logger }) => {
       const firstText = await client.chat.postMessage({
         channel: channelToPost,
         text: `<@${userId}> has challenged <@${otherUser}> to play magical infinite RPS! Player 1, make your first move!`,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
 
       await dbRun(
@@ -320,6 +326,8 @@ const omnirpsSubmission = async ({ ack, view, client, logger }) => {
     const firstText = await client.chat.postMessage({
       channel: channelToPost,
       text: `<@${userId}> has challenged <@${otherUser}> to a game of magical Omniscient Rock, Paper, Scissors!`,
+      username: "The Dokeshi",
+      icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
     });
 
     await dbRun(
@@ -331,6 +339,8 @@ const omnirpsSubmission = async ({ ack, view, client, logger }) => {
     await client.chat.postMessage({
       channel: channelToPost,
       thread_ts: firstText.ts,
+      username: "The Dokeshi",
+      icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg",
       blocks: [
         {
           type: "section",
@@ -428,6 +438,8 @@ const omniP1MoveSubmission = async ({ ack, view, body, client, logger }) => {
         channel: metadata.channelId,
         thread_ts: metadata.messageTs,
         text: `It's a tie! Both players chose ${p1}.`,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
       return;
     }
@@ -440,18 +452,24 @@ const omniP1MoveSubmission = async ({ ack, view, body, client, logger }) => {
         channel: metadata.channelId,
         thread_ts: metadata.messageTs,
         text: `<@${game.player1}>'s answer of "${p1}" won against <@${game.player2}>'s answer of "${p2}"! ${winner}`,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
     } else if (winCondition.toLowerCase().includes(p2.toLowerCase())) {
       await client.chat.postMessage({
         channel: metadata.channelId,
         thread_ts: metadata.messageTs,
         text: `<@${game.player2}>'s answer of "${p2}" won against <@${game.player1}>'s answer of "${p1}"! ${winner}`,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
     } else {
       await client.chat.postMessage({
         channel: metadata.channelId,
         thread_ts: metadata.messageTs,
         text: `Something went wrong with determining the winner.`,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
       logger.error('Winner determination failed', { p1, p2, winner, winCondition });
     }
@@ -513,6 +531,8 @@ const omniP2MoveSubmission = async ({ ack, view, body, client, logger }) => {
         channel: metadata.channelId,
         thread_ts: metadata.messageTs,
         text: `It's a tie! Both players chose ${p1}.`,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
       return;
     }
@@ -525,18 +545,24 @@ const omniP2MoveSubmission = async ({ ack, view, body, client, logger }) => {
         channel: metadata.channelId,
         thread_ts: metadata.messageTs,
         text: `<@${game.player1}>'s answer of "${p1}" won against <@${game.player2}>'s answer of "${p2}"! ${winner}`,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
     } else if (winCondition.toLowerCase().includes(p2.toLowerCase())) {
       await client.chat.postMessage({
         channel: metadata.channelId,
         thread_ts: metadata.messageTs,
         text: `<@${game.player2}>'s answer of "${p2}" won against <@${game.player1}>'s answer of "${p1}"! ${winner}`,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
     } else {
       await client.chat.postMessage({
         channel: metadata.channelId,
         thread_ts: metadata.messageTs,
         text: `Something went wrong with determining the winner.`,
+        username: "The Dokeshi",
+        icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
       });
       logger.error('Winner determination failed', { p1, p2, winner, winCondition });
     }

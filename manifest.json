@@ -4,7 +4,8 @@
         "minor_version": 1
     },
     "display_information": {
-        "name": "Kit"
+        "name": "Kit",
+        "profile_picture": "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
     },
     "features": {
         "app_home": {
@@ -13,7 +14,7 @@
             "messages_tab_read_only_enabled": true
         },
         "bot_user": {
-            "display_name": "Shadow Hello",
+            "display_name": "Kit",
             "always_online": true
         },
         "slash_commands": [

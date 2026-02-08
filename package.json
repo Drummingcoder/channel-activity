@@ -29,6 +29,7 @@
     "@libsql/client": "^0.17.0",
     "@slack/bolt": "^4.6.0",
     "dotenv": "~17.2.3",
+    "node-cron": "^3.0.3",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {

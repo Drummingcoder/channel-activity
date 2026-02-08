@@ -116,6 +116,8 @@ const basicrps = async ({ ack, view, client, logger }) => {
     const firstText = await client.chat.postMessage({
       channel: channel,
       text: `<@${player1}> has challenged <@${player2}> to a game of Rock, Paper, Scissors!`,
+      username: "The Dokeshi",
+      icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
     });
 
     await dbRun(
@@ -134,6 +136,8 @@ const basicrps = async ({ ack, view, client, logger }) => {
     await client.chat.postMessage({
       channel: channel,
       thread_ts: firstText.ts,
+      username: "The Dokeshi",
+      icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg",
       blocks: [
         {
           type: "section",
@@ -234,18 +238,24 @@ const p1MoveSubmission = async ({ ack, view, client, logger }) => {
           channel: metadata.channelId,
           thread_ts: metadata.messageTs,
           text: `It's a tie! Both players chose *${selectedMove}*.`,
+          username: "The Dokeshi",
+          icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
         });
       } else if (winner === 'p1') {
         await client.chat.postMessage({
           channel: metadata.channelId,
           thread_ts: metadata.messageTs,
           text: `<@${game.player1}> wins! They threw ${selectedMove} while <@${game.player2}> threw ${game.p2input}.`,
+          username: "The Dokeshi",
+          icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
         });
       } else {
         await client.chat.postMessage({
           channel: metadata.channelId,
           thread_ts: metadata.messageTs,
           text: `<@${game.player2}> wins! They threw ${game.p2input} while <@${game.player1}> threw ${selectedMove}.`,
+          username: "The Dokeshi",
+          icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
         });
       }
     }
@@ -300,18 +310,24 @@ const p2MoveSubmission = async ({ ack, view, client, logger }) => {
           channel: metadata.channelId,
           thread_ts: metadata.messageTs,
           text: `It's a tie! Both players chose *${selectedMove}*.`,
+          username: "The Dokeshi",
+          icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
         });
       } else if (winner === 'p1') {
         await client.chat.postMessage({
           channel: metadata.channelId,
           thread_ts: metadata.messageTs,
           text: `<@${game.player1}> wins! They threw ${game.p1input} while <@${game.player2}> threw ${selectedMove}.`,
+          username: "The Dokeshi",
+          icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
         });
       } else {
         await client.chat.postMessage({
           channel: metadata.channelId,
           thread_ts: metadata.messageTs,
           text: `<@${game.player2}> wins! They threw ${selectedMove} while <@${game.player1}> threw ${game.p1input}.`,
+          username: "The Dokeshi",
+          icon_url: "https://cdn.hackclub.com/019c3add-359f-732c-94da-64eb92507428/jester.jpeg"
         });
       }
     }

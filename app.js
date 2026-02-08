@@ -1,6 +1,7 @@
 import { App, LogLevel } from '@slack/bolt';
 import { config } from 'dotenv';
 import { registerListeners } from './listeners/index.js';
+import cron from 'node-cron';
 import http from 'http';
 
 config();
@@ -12,7 +13,15 @@ const app = new App({
   logLevel: LogLevel.DEBUG,
 });
 
+
+
 registerListeners(app);
+
+// Cron job that runs every minute
+cron.schedule('* * * * *', () => {
+  console.log('Cron job executed at', new Date().toISOString());
+  // Add your cron job logic here
+});
 
 (async () => {
   try {
