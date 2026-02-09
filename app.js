@@ -20,13 +20,19 @@ registerListeners(app);
 await turso.execute(`
   CREATE TABLE IF NOT EXISTS timeUsers (
     id NUMBER PRIMARY KEY,
-    slack_id STRING,
+    slack_id STRING UNIQUE,
     coins NUMBER DEFAULT 0,
     timeOnline NUMBER DEFAULT 0,
     timeOffline NUMBER DEFAULT 0,
     spentCoins NUMBER DEFAULT 0
   )
 `);
+
+// Insert user if not exists
+await turso.execute({
+  sql: `INSERT OR IGNORE INTO timeUsers (id, slack_id, coins, timeOnline, timeOffline, spentCoins) VALUES (?, ?, ?, ?, ?, ?)`,
+  args: [1, usertomonitor, 0, 0, 0, 0]
+});
 
 const usertomonitor = "U091EPSQ3E3";
 const jesterchannel = "C09GDF8ETQB";
@@ -37,7 +43,7 @@ const CLOUDFLARE_ACCOUNT_ID = process.env.CLOUDFLARE_API_KEY;
 const CLOUDFLARE_API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
 const AI_MODEL = "@cf/meta/llama-3.1-8b-instruct";
 
-// Runs every minute, but only executes at 8:00 pm America/Los_Angeles (PST/PDT)
+// Runs every minute
 cron.schedule('* * * * *', async () => {
   const now = DateTime.now().setZone('America/Los_Angeles');
   if (now.hour === 20 && now.minute === 0) {
