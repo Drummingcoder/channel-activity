@@ -24,7 +24,7 @@ const runAi = async ({ message, client, logger }) => {
             }
             ]
         }),
-        });
+    });
 
     const data = await response.json();
     const botReply = data.choices[0].message.content;

@@ -17,6 +17,7 @@ const app = new App({
 
 registerListeners(app);
 
+const usertomonitor = "U091EPSQ3E3";
 await turso.execute(`
   CREATE TABLE IF NOT EXISTS timeUsers (
     id NUMBER PRIMARY KEY,
@@ -33,8 +34,6 @@ await turso.execute({
   sql: `INSERT OR IGNORE INTO timeUsers (id, slack_id, coins, timeOnline, timeOffline, spentCoins) VALUES (?, ?, ?, ?, ?, ?)`,
   args: [1, usertomonitor, 0, 0, 0, 0]
 });
-
-const usertomonitor = "U091EPSQ3E3";
 const jesterchannel = "C09GDF8ETQB";
 const personalchan = "C09AHN6V1U7";
 
