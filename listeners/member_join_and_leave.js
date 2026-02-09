@@ -108,8 +108,8 @@ const memberleave = async({ client, event }) => {
 };
 
 const botjoinchannel = async ({ client, event }) => {
-  const allowedChannels = ["C09AHN6V1U7"];
-
+  const allowedChannels = ["C09AHN6V1U7", "C09GDF8ETQB", "C0A21M6CWLU"];
+  // for later
 
 };
 
