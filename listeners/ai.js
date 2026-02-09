@@ -155,8 +155,8 @@ const runAi = async ({ message, client, logger }) => {
         text: botReply
     });
 
-  } catch (error) {
-    logger.error(error);
+  } catch (err) {
+    console.error(err);
   }
 }
 
