@@ -581,13 +581,13 @@ const omnirespond = async ({ message, client, say, logger }) => {
 
     // Ignore bot messages
     if (message.bot_id || message.subtype === 'bot_message') {
-      runAi(message, client, logger);
+      await runAi({ message, client, logger });
       return;
     }
 
     // Only respond to messages in threads
     if (!message.thread_ts) {
-      runAi(message, client, logger);
+      await runAi({ message, client, logger });
       return;
     }
 
@@ -602,9 +602,9 @@ const omnirespond = async ({ message, client, say, logger }) => {
       [timestamp]
     );
 
-    // If no game found or game is finished, ignore
+    // If no game found or game is finished
     if (!game || game.finished === 1) {
-      runAi(message, client, logger);
+      await runAi({ message, client, logger });
       return;
     }
 
