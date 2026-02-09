@@ -146,8 +146,10 @@ const runAi = async ({ message, client, logger }) => {
     });
 
     const data = await response.json();
-    const botReply = data.choices[0].message.content;
+
     console.log(data);
+
+    const botReply = data.choices[0].message.content;    
 
     await client.chat.postMessage({
         channel: channelToPost,
