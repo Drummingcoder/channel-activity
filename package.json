@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@libsql/client": "^0.17.0",
+    "@openrouter/sdk": "^0.8.0",
     "@slack/bolt": "^4.6.0",
     "dotenv": "~17.2.3",
     "luxon": "^3.7.2",

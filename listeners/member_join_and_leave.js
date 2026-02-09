@@ -107,6 +107,12 @@ const memberleave = async({ client, event }) => {
     });
 };
 
+const botjoinchannel = async ({ client, event }) => {
+  const allowedChannels = ["C09AHN6V1U7"];
+
+
+};
+
 // Actions
 const yesser = async ({ ack, client, body }) => {
     await ack();
@@ -184,4 +190,4 @@ const nooer = async ({ ack, client, body }) => {
     }
 };
 
-export { memberjoin, memberleave, yesser, nooer };
+export { memberjoin, memberleave, yesser, nooer, botjoinchannel};

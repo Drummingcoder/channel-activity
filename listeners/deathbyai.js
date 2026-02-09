@@ -37,8 +37,10 @@ import { turso, dbRun, dbGet } from './database.js';
       type TEXT DEFAULT 'general',
       lastquestion TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
+    )
+    `);
 
+    await turso.execute(`
     CREATE TABLE IF NOT EXISTS DeathResponses (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       game_number INTEGER UNIQUE NOT NULL,

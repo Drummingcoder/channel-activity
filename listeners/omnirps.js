@@ -1,4 +1,5 @@
 import { turso, dbRun, dbGet } from './database.js';
+import { runAi } from './ai.js';
 
 // Cloudflare AI configuration
 const CLOUDFLARE_ACCOUNT_ID = process.env.CLOUDFLARE_API_KEY;
@@ -73,8 +74,10 @@ async function determineWinner(p1Move, p2Move) {
         input_state INTEGER DEFAULT 0,
         type TEXT NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
+    )
+    `);
 
+    await turso.execute(`
     CREATE TABLE IF NOT EXISTS MultiRPSGames (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       game_id TEXT UNIQUE NOT NULL,
@@ -571,13 +574,20 @@ const omniP2MoveSubmission = async ({ ack, view, body, client, logger }) => {
 // reply mechanism
 const omnirespond = async ({ message, client, say, logger }) => {
   try {
+    // Ignore its own messages
+    if (message.user == "U0A2THHDPN2") {
+      return;
+    }
+
     // Ignore bot messages
     if (message.bot_id || message.subtype === 'bot_message') {
+      runAi(message, client, logger);
       return;
     }
 
     // Only respond to messages in threads
     if (!message.thread_ts) {
+      runAi(message, client, logger);
       return;
     }
 
@@ -594,6 +604,7 @@ const omnirespond = async ({ message, client, say, logger }) => {
 
     // If no game found or game is finished, ignore
     if (!game || game.finished === 1) {
+      runAi(message, client, logger);
       return;
     }
 

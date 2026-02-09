@@ -115,75 +115,73 @@ cron.schedule('* * * * *', async () => {
       channel: jesterchannel,
       text: "Coins have been counted and the times have been reset. Let's see how well you can do today."
     });
-  }
-});
+  } else {
+    let getResp = await dbGet('SELECT * FROM timeUsers WHERE slack_id = ?', usertomonitor);
 
-cron.schedule('* * * * *', async () => {
-  let getResp = await dbGet('SELECT * FROM timeUsers WHERE slack_id = ?', usertomonitor);
-
-  const getStatus = await app.client.users.getPresence({
-    user: getResp.slack_id,
-  });
-  if (getStatus.presence == "active") {
-    await dbRun(
-      'UPDATE timeUsers SET timeOnline = ? WHERE slack_id = ?',
-      (getResp.timeOnline + 1),
-      usertomonitor
-    );
-
-    if ((getResp.spentCoins > 0) && (getResp.timeOnline + 1) % 30 == 0) {
+    const getStatus = await app.client.users.getPresence({
+      user: getResp.slack_id,
+    });
+    if (getStatus.presence == "active") {
       await dbRun(
-        'UPDATE timeUsers SET spentCoins = ? WHERE slack_id = ?',
-        (getResp.spentCoins - 1),
+        'UPDATE timeUsers SET timeOnline = ? WHERE slack_id = ?',
+        (getResp.timeOnline + 1),
         usertomonitor
       );
-    } else {
-      const time = getResp.timeOnline + 1;
-      if (time == 30) {
-        await app.client.chat.postMessage ({
-          channel: jesterchannel,
-          text: `Hey, <@${usertomonitor}>, you've been on Slack for 30 minutes now...`,
-        });
-      } else if (time == 60) {
-        await app.client.chat.postMessage ({
-          channel: jesterchannel,
-          text: `Hey, <@${usertomonitor}>, your Slack time has reached 1 hour.`,
-        });
-      } else if (time == 90) {
-        await app.client.chat.postMessage ({
-          channel: jesterchannel,
-          text: `Hey, <@${usertomonitor}>, your Slack time is now 1 hour and 30 mins.`,
-        });
-      } else if (time == 120) {
-        await app.client.chat.postMessage ({
-          channel: jesterchannel,
-          text: `Hey, <@${usertomonitor}>. You've been here for 2 hours now, maybe it's time to get off?`,
-        });
-      } else if (time == 150) {
-        await app.client.chat.postMessage ({
-          channel: jesterchannel,
-          text: `Hmm, <@${usertomonitor}>. It's been 2 hours and 30 minutes, it's really time to get off now ya know.`,
-        });
-      } else if (time == 180) {
-        await app.client.chat.postMessage ({
-          channel: jesterchannel,
-          text: `<@${usertomonitor}> Haa...this is so disappointing. How could you want my help and still stay online for 3 HOURS? Just let me sleep twin...`,
-        });
-      } else if (time % 30 == 0) {
-        const hours = Math.floor(time / 60);
-        const mins = time % 60;
-        await app.client.chat.postMessage ({
-          channel: jesterchannel,
-          text: `Let's just get to the point, <@${usertomonitor}>. You've been online for ${hours} hours and ${mins} minutes today.`,
-        });
+
+      if ((getResp.spentCoins > 0) && (getResp.timeOnline + 1) % 30 == 0) {
+        await dbRun(
+          'UPDATE timeUsers SET spentCoins = ? WHERE slack_id = ?',
+          (getResp.spentCoins - 1),
+          usertomonitor
+        );
+      } else {
+        const time = getResp.timeOnline + 1;
+        if (time == 30) {
+          await app.client.chat.postMessage ({
+            channel: jesterchannel,
+            text: `Hey, <@${usertomonitor}>, you've been on Slack for 30 minutes now...`,
+          });
+        } else if (time == 60) {
+          await app.client.chat.postMessage ({
+            channel: jesterchannel,
+            text: `Hey, <@${usertomonitor}>, your Slack time has reached 1 hour.`,
+          });
+        } else if (time == 90) {
+          await app.client.chat.postMessage ({
+            channel: jesterchannel,
+            text: `Hey, <@${usertomonitor}>, your Slack time is now 1 hour and 30 mins.`,
+          });
+        } else if (time == 120) {
+          await app.client.chat.postMessage ({
+            channel: jesterchannel,
+            text: `Hey, <@${usertomonitor}>. You've been here for 2 hours now, maybe it's time to get off?`,
+          });
+        } else if (time == 150) {
+          await app.client.chat.postMessage ({
+            channel: jesterchannel,
+            text: `Hmm, <@${usertomonitor}>. It's been 2 hours and 30 minutes, it's really time to get off now ya know.`,
+          });
+        } else if (time == 180) {
+          await app.client.chat.postMessage ({
+            channel: jesterchannel,
+            text: `<@${usertomonitor}> Haa...this is so disappointing. How could you want my help and still stay online for 3 HOURS? Just let me sleep twin...`,
+          });
+        } else if (time % 30 == 0) {
+          const hours = Math.floor(time / 60);
+          const mins = time % 60;
+          await app.client.chat.postMessage ({
+            channel: jesterchannel,
+            text: `Let's just get to the point, <@${usertomonitor}>. You've been online for ${hours} hours and ${mins} minutes today.`,
+          });
+        }
       }
+    } else if (getStatus.presence == "away") {
+      await dbRun(
+        'UPDATE timeUsers SET timeOffline = ? WHERE slack_id = ?',
+        (getResp.timeOffline + 1),
+        usertomonitor
+      );
     }
-  } else if (getStatus.presence == "away") {
-    await dbRun(
-      'UPDATE timeUsers SET timeOffline = ? WHERE slack_id = ?',
-      (getResp.timeOffline + 1),
-      usertomonitor
-    );
   }
 });
 
