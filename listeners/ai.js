@@ -3,16 +3,18 @@ const runAi = async ({ message, client, logger }) => {
     const channelToPost = message.channel;
     const timestamp = message.thread_ts;
     const mess = message.text;
-    const user = message.user;
+    
+    const model = "@cf/meta/llama-3-8b-instruct";
+    const cfKey = process.env.CLOUDFLARE_API_KEY;
+    const cfToken = process.env.CLOUDFLARE_API_TOKEN;
 
-    const response = await fetch('https://ai.hackclub.com/proxy/v1/chat/completions', {
+    const airesponse = await fetch(`https://api.cloudflare.com/client/v4/accounts/${cfKey}/ai/run/${model}`, {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${process.env.HACKCLUB_AI_KEY}`,
+            'Authorization': `Bearer ${cfToken}`,
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            model: 'x-ai/grok-4.1-fast',
             messages: [
             { 
                 role: 'system', 
@@ -141,15 +143,18 @@ const runAi = async ({ message, client, logger }) => {
                 role: 'user', 
                 content: `Here is the message to respond to: ${mess}.`
             }
-            ]
+            ],
+            temperature: 0.8,
+            max_tokens: 300,
+            top_p: 0.9
         }),
     });
 
-    const data = await response.json();
+    const data = await airesponse.json();
 
     console.log(data);
 
-    const botReply = data.choices[0].message.content;    
+    const botReply = data.result.response;    
 
     await client.chat.postMessage({
         channel: channelToPost,
